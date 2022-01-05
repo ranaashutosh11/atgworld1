@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Col, Container, Row } from "react-bootstrap";
+import NavigationBar from "./components/Navbar";
+import Banner from "./components/Banner";
+import PostsHead from "./components/PostsHead";
+import Post from "./components/Post";
+import SideNav from "./components/SideNav";
+import SignUpModal from "./components/SignUpModal";
 
+import { useState } from "react";
 function App() {
+  const [show, handleShow] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div classNameName="App">
+      <NavigationBar openModal={handleShow} />
+      <Banner />
+      <Container fluid style={{ backgroundColor: "white" }}>
+        <PostsHead />
+        <Container fluid>
+          <Col>
+            <Row style={{ marginTop: 15 }}>
+              <Post />
+            </Row>
+            <Row style={{ marginTop: 15 }}>
+              <Post />
+            </Row>
+            <Row style={{ marginTop: 15 }}>
+              <Post />
+            </Row>
+          </Col>
+          <Col>
+            <SideNav />
+          </Col>
+        </Container>
+      </Container>
+      <SignUpModal show={show} onHide={() => handleShow(false)} />
     </div>
   );
 }
